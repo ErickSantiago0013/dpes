@@ -1,0 +1,199 @@
+/* Estilos existentes */
+body {
+    background: #f5f5f5;
+  }
+  
+  header {
+    background-color: #8A5AFF;
+    padding: 7px 0;
+  }
+  
+  .menu {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .menu li {
+    display: inline-block;
+    margin-right: 10px;
+  }
+  
+  .menu li a {
+    color: #fff;
+    text-decoration: none;
+    padding: 5px 10px;
+  }
+  
+  .menu li a:hover {
+    background-color: #fff;
+    color: #8A5AFF;
+    border-radius: 5px;
+  }
+  
+  /* Estilos adicionais para o menu */
+  
+  .dashboard-container {
+    margin-top: 10px;
+    text-align: center;
+    width: 100%;
+    overflow: visible;
+  }
+  
+  .carousel-container {
+    height: 40vh;
+  }
+  
+  .owl-stage {
+    height: 30vh;
+  }
+  
+  .card {
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .chat-container {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+  }
+  
+  .chat-button {
+    background-color: #8A5AFF;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
+  .chat-modal {
+    display: none;
+    position: fixed;
+    bottom: 90px;
+    left: 20px;
+    width: 300px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+  }
+  
+  .chat-header {
+    background-color: #8A5AFF;
+    color: #fff;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .close-button {
+    background-color: transparent;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .chat-content {
+    padding: 10px;
+  }
+  
+  .message-input {
+    width: 100%;
+    padding: 5px;
+  }
+  
+  .send-button {
+    background-color: #8A5AFF;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  /* Estilos existentes */
+  
+  /* Estilos adicionais para a animação */
+  .card ul li {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease-in, transform 0.5s ease-in;
+  }
+  
+  /* Estilos adicionais para a animação */
+  .card.show ul li {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  /* card.css */
+  
+  .card-container {
+    width: 200px;
+    background-color: #f2f2f2;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    position: relative; /* Adicionado */
+    z-index: 1; /* Adicionado */
+  }
+  
+  .card-image {
+    width: 180px;
+    height: auto; /* Alterado para altura automática */
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+  }
+  
+  .card-description {
+    text-align: center;
+    font-size: 14px;
+    color: #555;
+  }
+  
+  .card {
+    position: relative;
+    transition: transform 0.5s, left 0.5s, top 0.5s;
+    z-index: 1;
+  }
+  
+  .card-icon {
+    position: relative;
+  }
+  
+  .card-icon i {
+    transition: color 0.3s;
+  }
+  
+  .card:hover .card-icon i {
+    color: #8A5AFF;
+  }
+  
+  .card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  }
+  
+  .dashboard-container {
+    overflow: visible;
+  }
+  .welcome-text {
+  margin-left: auto;
+  color: #fff;
+  font-size: 14px;
+}
+

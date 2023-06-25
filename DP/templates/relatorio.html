@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Relatórios</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='relatorio.css') }}">
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.0/jquery-ui.min.js"></script>
+    <script src="{{ url_for('static', filename='relatorio.js') }}"></script>
+    <script src="https://cdn.datatables.net/buttons/1.7.1/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.print.min.js"></script>
+
+</head>
+<body>
+    
+    <table id="candidatos-table" class="highlight responsive-table">
+        <thead>
+            <tr>
+                <th style="width: 100px;">Nome</th>
+                <th>Idade</th>
+                <th>Sexo</th>
+                <th>Estado Civil</th>
+                <th>Qtd. Filho</th>
+                <th>Idade Filho</th>
+                <th>Escolaridade</th>
+                <th>Área de Formação</th>
+                <th>Entidade</th>
+                <th>Endereço</th>
+                <th>Bairro</th>
+                <th>Cidade</th>
+                <th>UF</th>
+                <th>Filial</th>
+                <th>Cargo</th>
+                <th>Data de Admissão</th>
+                <th>Praça</th>
+                <th>Vale Transporte</th>
+                <th>Entrevistador</th>
+                <th>Data da Entrevista</th>
+                <th>Status</th>
+                <th>Grau de Anotação</th>
+                <th>Anotação</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for candidato in candidatos %}
+            <tr>
+                <td><i class="fas fa-search candidate-details-icon" data-id="{{ candidato[0] }}"></i>{{ candidato[1] }}</td>
+                <td>{{ candidato[2] }}</td>
+                <td>{{ candidato[3] }}</td>
+                <td>{{ candidato[4] }}</td>
+                <td>{{ candidato[5] }}</td>
+                <td>{{ candidato[6] }}</td>
+                <td>{{ candidato[7] }}</td>
+                <td>{{ candidato[8] }}</td>
+                <td>{{ candidato[9] }}</td>
+                <td>{{ candidato[10] }}</td>
+                <td>{{ candidato[11] }}</td>
+                <td>{{ candidato[12] }}</td>
+                <td>{{ candidato[13] }}</td>
+                <td>{{ candidato[14] }}</td>
+                <td>{{ candidato[15] }}</td>
+                <td>{{ candidato[16] }}</td>
+                <td>{{ candidato[17] }}</td>
+                <td>{{ candidato[18] }}</td>
+                <td>{{ candidato[19] }}</td>
+                <td>{{ candidato[20] }}</td>
+                <td>{{ candidato[21] }}</td>
+                <td>{{ candidato[22] }}</td>
+                <td>{{ candidato[23] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+<!-- Modal para exibir os detalhes do funcionário -->
+<div class="modal fade" id="employeeDetailsModal" tabindex="-1" role="dialog" aria-labelledby="employeeDetailsModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="employeeDetailsModalLabel">Detalhes do Candidato</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body" id="employeeDetailsModalBody">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h5>Dados Pessoais</h5>
+                        <p>Nome: <span id="employeeName"></span></p>
+                        <p>Idade: <span id="employeeIdade"></span></p>
+                        <p>Sexo: <span id="employeeSexo"></span></p>
+                        <p>Estado Civil: <span id="employeeEstadoCivil"></span></p>
+                        <p>Qtd. Filho: <span id="employeeQuantidadeFilhos"></span></p>
+                        <p>Idade Filho: <span id="employeeIdadeFilho"></span></p>
+                        <p>Escolaridade: <span id="employeeEscolaridade"></span></p>
+                        <p>Área de Formação: <span id="employeeAreaFormacao"></span></p>
+                        <p>Entidade: <span id="employeeEntidade"></span></p>
+                        <p>Endereço: <span id="employeeEndereco"></span></p>
+                        <p>Bairro: <span id="employeeBairro"></span></p>
+                        <p>Cidade: <span id="employeeCidade"></span></p>
+                        <p>UF: <span id="employeeUF"></span></p>
+                        <p>Filial: <span id="employeeFilial"></span></p>
+                        <p>Cargo: <span id="employeeCargo"></span></p>
+                        <p>Data de Admissão: <span id="employeeDataAdmissao"></span></p>
+                        <p>Praça: <span id="employeePraca"></span></p>
+                        <p>Vale Transporte: <span id="employeeValeTransporte"></span></p>
+                        <p>Entrevistador: <span id="employeeEntrevistador"></span></p>
+                        <p>Data da Entrevista: <span id="employeeDataEntrevista"></span></p>
+                        <p>Status: <span id="employeeStatus"></span></p>
+                        <p>Grau de Anotação: <span id="employeeGrauAnotacao"></span></p>
+                        <p>Anotação: <span id="employeeAnotacao"></span></p>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                <button type="button" class="btn btn-primary" id="editEmployeeButton">Editar</button>
+                <button type="button" class="btn btn-primary" id="exportEmployeeButton">Exportar</button>
+            </div>
+        </div>
+    </div>
+</div>
+    <script>
+        $(document).ready(function() {
+            $('#candidatos-table').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    'copy', 'csv', 'excel', 'pdf', 'print'
+                ]
+            });
+        });
+
+    // Tornar o modal arrastável
+    $('#employeeDetailsModal').draggable({
+        handle: ".modal-header"
+    });
+    </script>
+
+</body>
+</html>

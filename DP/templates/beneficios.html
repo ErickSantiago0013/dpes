@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tela de Benefícios</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='beneficios.css') }}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-material-design@4.0.0/dist/css/bootstrap-material-design.min.css">
+</head>
+<body>
+    <!-- Restante do seu conteúdo HTML -->
+
+    <!-- Modal de Benefícios -->
+    <div id="beneficiosModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <!-- Conteúdo da tela de benefícios -->
+            <h2>Tela de Benefícios</h2>
+            <label for="tipoBusca">Tipo de Busca:</label>
+            <select id="tipoBusca">
+                <option value="codigo">Código</option>
+                <option value="nome">Nome</option>
+                <option value="loja">Loja</option>
+            </select>
+            <label for="campoBusca">Buscar por:</label>
+            <input type="text" id="campoBusca">
+            <button id="btnBuscar">Buscar</button>
+            <!-- Resto do conteúdo da tela de benefícios -->
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='beneficios.js') }}"></script>
+    <script>
+        // Obtém o modal
+        var modal = document.getElementById("beneficiosModal");
+
+        // Obtém o elemento <span> que fecha o modal
+        var spanFecharModal = document.getElementsByClassName("close")[0];
+
+        // Abre o modal quando a página é carregada
+        window.onload = function() {
+            modal.style.display = "block";
+        };
+
+        // Fecha o modal quando o usuário clica no <span> (x)
+        spanFecharModal.onclick = function() {
+            modal.style.display = "none";
+        };
+
+        // Fecha o modal quando o usuário clica fora da área do modal
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        };
+    </script>
+</body>
+</html>

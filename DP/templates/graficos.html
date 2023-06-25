@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gráficos</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='graficos.css') }}">
+</head>
+<body>
+    <h1>Gráficos</h1>
+
+    <div class="chart-container">
+        <h2 class="chart-title">Gráfico de Barras</h2>
+        <canvas id="barChart"></canvas>
+        <div class="button-container">
+            <button class="print-button" onclick="printChart('barChart')">Imprimir Gráfico de Barras</button>
+        </div>
+    </div>
+
+    <div class="chart-container">
+        <h2 class="chart-title">Gráfico de Pizza</h2>
+        <canvas id="pieChart"></canvas>
+        <div class="button-container">
+            <button class="print-button" onclick="printChart('pieChart')">Imprimir Gráfico de Pizza</button>
+        </div>
+    </div>
+
+    <div class="chart-container">
+        <h2 class="chart-title">Gráfico de Linha</h2>
+        <canvas id="lineChart"></canvas>
+        <div class="button-container">
+            <button class="print-button" onclick="printChart('lineChart')">Imprimir Gráfico de Linha</button>
+        </div>
+    </div>
+
+    <div class="chart-container">
+        <h2 class="chart-title">Gráfico de Ícones</h2>
+        <canvas id="iconChart"></canvas>
+        <div class="button-container">
+            <button class="print-button" onclick="printChart('iconChart')">Imprimir Gráfico de Ícones</button>
+        </div>
+    </div>
+
+    <div class="button-container">
+        <button class="print-button" onclick="printAllCharts()">Imprimir Todos os Gráficos</button>
+    </div>
+    <div id="chartContainer"></div>
+
+    <script>
+        // Obter os dados dos gráficos passados pelo Flask
+        var dados = {{ dados|tojson }};
+
+        // Função para imprimir um gráfico específico
+        function printChart(chartId) {
+            var canvas = document.getElementById(chartId);
+            var image = canvas.toDataURL('image/png');
+            var windowContent = '<!DOCTYPE html>';
+            windowContent += '<html>';
+            windowContent += '<head><title>Imprimir Gráfico</title></head>';
+            windowContent += '<body>';
+            windowContent += '<img src="' + image + '">';
+            windowContent += '</body>';
+            windowContent += '</html>';
+            var printWindow = window.open('', '', 'width=800, height=600');
+            printWindow.document.open();
+            printWindow.document.write(windowContent);
+            printWindow.document.close();
+            printWindow.print();
+        }
+
+        // Função para imprimir todos os gráficos
+        function printAllCharts() {
+            var chartIds = ['barChart', 'pieChart', 'lineChart', 'iconChart'];
+            var windowContent = '<!DOCTYPE html>';
+            windowContent += '<html>';
+            windowContent += '<head><title>Imprimir Todos os Gráficos</title></head>';
+            windowContent += '<body>';
+            chartIds.forEach(function(chartId) {
+                var canvas = document.getElementById(chartId);
+                var image = canvas.toDataURL('image/png');
+                windowContent += '<img src="' + image + '">';
+            });
+            windowContent += '</body>';
+            windowContent += '</html>';
+            var printWindow = window.open('', '', 'width=800, height=600');
+            printWindow.document.open();
+            printWindow.document.write(windowContent);
+            printWindow.document.close();
+            printWindow.print();
+        }
+
+        // Gráfico de Barras
+        var barChart = new Chart(document.getElementById('barChart'), {
+            type: 'bar',
+            data: {
+                labels: dados.categorias,
+                datasets: [{
+                    label: 'Quantidade',
+                    data: dados.valores,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.6)',
+                        'rgba(54, 162, 235, 0.6)',
+                        'rgba(255, 206, 86, 0.6)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        precision: 0
+                    }
+                }
+                
+            }
+        });
+
+        // Gráfico de Pizza
+        var pieChart = new Chart(document.getElementById('pieChart'), {
+            type: 'pie',
+            data: {
+                labels: dados.categorias,
+                datasets: [{
+                    data: dados.valores,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.6)',
+                        'rgba(54, 162, 235, 0.6)',
+                        'rgba(255, 206, 86, 0.6)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'bottom'
+                    }
+                }
+            }
+        });
+
+        // Gráfico de Linha
+        var lineChart = new Chart(document.getElementById('lineChart'), {
+            type: 'line',
+            data: {
+                labels: dados.categorias,
+                datasets: [{
+                    label: 'Quantidade',
+                    data: dados.valores,
+                    fill: false,
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    borderWidth: 2
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        precision: 0
+                    }
+                }
+            }
+        });
+
+        // Gráfico de Ícones
+        var iconChart = new Chart(document.getElementById('iconChart'), {
+            type: 'bar',
+            data: {
+                labels: dados.categorias.map(function(label) {
+                    if (label === 'Candidatos Reprovados') {
+                        return '✘ ' + label;
+                    } else if (label === 'Candidatos Aprovados') {
+                        return '✔ ' + label;
+                    } else if (label === 'Aguardando') {
+                        return '⌛ ' + label;
+                    }
+                }),
+                datasets: [{
+                    label: 'Quantidade',
+                    data: dados.valores,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.6)',
+                        'rgba(54, 162, 235, 0.6)',
+                        'rgba(255, 206, 86, 0.6)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        precision: 0
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                }
+            }
+        });
+        // Função para exibir a tabela com os dados do item selecionado
+function showData(itemIndex) {
+    // Obtém os dados correspondentes ao item selecionado
+    var nome = dados.nome[itemIndex];
+    var status = dados.status[itemIndex];
+    var sexo = dados.sexo[itemIndex];
+    var idade = dados.idade[itemIndex];
+    var escolaridade = dados.escolaridade[itemIndex];
+    var filhos = dados.quantidade_filhos[itemIndex];
+
+    // Cria a tabela dinamicamente
+    var table = document.createElement('table');
+    table.classList.add('data-table');
+
+    // Cria a primeira linha da tabela (cabeçalho)
+    var headerRow = document.createElement('tr');
+    var headerCell1 = document.createElement('th');
+    headerCell1.textContent = 'Nome';
+    var headerCell2 = document.createElement('th');
+    headerCell2.textContent = 'Status';
+    var headerCell3 = document.createElement('th');
+    headerCell3.textContent = 'Sexo';
+    var headerCell4 = document.createElement('th');
+    headerCell4.textContent = 'Idade';
+    var headerCell5 = document.createElement('th');
+    headerCell5.textContent = 'Escolaridade';
+    var headerCell6 = document.createElement('th');
+    headerCell6.textContent = 'Filhos';
+
+    headerRow.appendChild(headerCell1);
+    headerRow.appendChild(headerCell2);
+    headerRow.appendChild(headerCell3);
+    headerRow.appendChild(headerCell4);
+    headerRow.appendChild(headerCell5);
+    headerRow.appendChild(headerCell6);
+
+    table.appendChild(headerRow);
+
+    // Cria a segunda linha da tabela (dados)
+    var dataRow = document.createElement('tr');
+    var dataCell1 = document.createElement('td');
+    dataCell1.textContent = nome;
+    var dataCell2 = document.createElement('td');
+    dataCell2.textContent = status;
+    var dataCell3 = document.createElement('td');
+    dataCell3.textContent = sexo;
+    var dataCell4 = document.createElement('td');
+    dataCell4.textContent = idade;
+    var dataCell5 = document.createElement('td');
+    dataCell5.textContent = escolaridade;
+    var dataCell6 = document.createElement('td');
+    dataCell6.textContent = filhos;
+
+    dataRow.appendChild(dataCell1);
+    dataRow.appendChild(dataCell2);
+    dataRow.appendChild(dataCell3);
+    dataRow.appendChild(dataCell4);
+    dataRow.appendChild(dataCell5);
+    dataRow.appendChild(dataCell6);
+
+    table.appendChild(dataRow);
+
+    // Verifica se já existe uma tabela anteriormente exibida e a remove
+    var existingTable = document.querySelector('.data-table');
+    if (existingTable) {
+        existingTable.parentNode.removeChild(existingTable);
+    }
+
+    // Adiciona a tabela ao elemento pai
+    var chartContainer = document.getElementById('chartContainer');
+    chartContainer.appendChild(table);
+}
+
+    </script>
+</body>
+</html>

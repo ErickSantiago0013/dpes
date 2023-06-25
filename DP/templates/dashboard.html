@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='chat.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script src="{{ url_for('static', filename='dashboard.js') }}"></script>
+    <script src="{{ url_for('static', filename='chat.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul class="menu">
+                <li><a href="/cadastro">Cadastro</a></li>
+                <li><a href="#">Editar</a></li>
+                <li><a href="#">Excluir</a></li>
+                <li><a href="{{ url_for('relatorios') }}">Relatórios</a></li>
+                <li> <a class="navbar-link" href="{{ url_for('estatisticas') }}">Estatísticas</a></li>
+                <li><a href="#">Desistentes</a></li>
+                <li><a href="/beneficios">Benefícios</a></li>
+                <li><a href="/logout">Sair</a></li>
+                <li class="welcome-text">Bem-vindo, {{ username }}!</li>
+            </ul>
+        </nav>
+    </header>
+    <div class="dashboard-container {{ tema }}">
+        <div class="carousel-container">
+            <div class="owl-carousel">
+                <div class="item">
+                    <div class="card" onclick="expandCard(this)">
+                        <div class="card-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="card-description">
+                            Admitidos
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="card" onclick="expandCard(this)">
+                        <div class="card-icon">
+                            <i class="fas fa-user-slash"></i>
+                        </div>
+                        <div class="card-description">
+                            Desistentes
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="card" onclick="location.href='/graficos'">
+                        <div class="card-icon">
+                            <i class="fas fa-chart-bar"></i>
+                        </div>
+                        <div class="card-description">
+                            Gráficos
+                        </div>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="card" onclick="openSettings()">
+                      <div class="card-icon">
+                        <i class="fas fa-cogs"></i>
+                      </div>
+                      <div class="card-description">
+                        Configurações
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div class="item">
+                    <div class="card" onclick="location.href='/caixa_mensagem'">
+                        <div class="card-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="card-description">
+                            Caixa de Mensagens
+                        </div>
+                    </div>
+                </div>
+                
+
+                <!-- Adicione mais itens conforme necessário -->
+            </div>
+        </div>
+        <!-- Outro conteúdo do dashboard aqui -->
+    </div>
+    <button class="chat-button">Chat</button>
+    <div class="chat-modal">
+        <div class="chat-header">
+            <h3>Chat de Suporte</h3>
+            <button class="close-button">Fechar</button>
+        </div>
+        <div class="chat-content">
+            <p>Olá! Em que posso ajudar?</p>
+            <input type="text" class="message-input" placeholder="Digite sua mensagem...">
+            <button class="send-button" onclick="enviarMensagem()">Enviar</button>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $('.owl-carousel').owlCarousel({
+                loop: true,
+                margin: 10,
+                nav: true,
+                dots: false,
+                responsive: {
+                    0: {
+                        items: 1
+                    },
+                    600: {
+                        items: 3
+                    },
+                    1000: {
+                        items: 5
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

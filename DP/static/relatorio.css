@@ -1,0 +1,31 @@
+    /* Estilo da tabela */
+    #candidatos-table {
+        font-size: 14px;
+        border-collapse: collapse;
+        width: 100%;
+        white-space: nowrap; /* Evita que o texto seja quebrado em várias linhas */
+    }
+
+    /* Estilo das células do cabeçalho */
+    #candidatos-table th {
+        background-color: #f2f2f2;
+        padding: 8px;
+        text-align: left;
+    }
+
+    /* Estilo das células de dados */
+    #candidatos-table td {
+        padding: 8px;
+        text-align: left;
+    }
+
+    /* Estilo das linhas alternadas (opcional) */
+    #candidatos-table tbody tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+
+    /* Estilo da barra horizontal para rolagem */
+    .table-wrapper {
+        max-height: 400px; /* Altura máxima da tabela */
+        overflow-x: auto; /* Habilita a barra de rolagem horizontal */
+    }

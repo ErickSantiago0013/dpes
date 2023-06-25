@@ -1,0 +1,79 @@
+/* estatisticas.css */
+
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+}
+
+.title {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    color: #333;
+}
+
+.cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.card {
+    width: 200px;
+    margin: 10px;
+    padding: 20px;
+    text-align: center;
+    background-color: #f7f7f7;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.card-title {
+    font-size: 18px;
+    font-weight: bold;
+    color: #555;
+}
+
+.card-value {
+    font-size: 32px;
+    font-weight: bold;
+    color: #333;
+}
+
+.filter-box {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.filter-box .form-control {
+    width: 200px;
+    display: inline-block;
+    margin-right: 10px;
+    font-size: 14px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.filter-button {
+    margin-top: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 10px 20px;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.filter-button:hover {
+    background-color: #0056b3;
+}
+
+.error-message {
+    color: red;
+    margin-top: 10px;
+}

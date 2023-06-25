@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Cadastro de Candidato</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='cadastro.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX" crossorigin="anonymous" />
+    <script src="{{ url_for('static', filename='cadastro.js') }}"></script>
+</head>
+<body>
+    <h1>Cadastro de Candidato</h1>
+    <form action="/salvar_candidato" method="POST">
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" name="nome" required><br>
+
+        <label for="idade">Idade:</label>
+        <input type="text" id="idade" name="idade" required><br>
+
+        <label for="sexo">Sexo:</label>
+        <select id="sexo" name="sexo" required>
+          <option value="">Selecione</option>
+          <option value="masculino">Masculino</option>
+          <option value="feminino">Feminino</option>
+        </select>             
+
+        <label for="estado_civil">Estado Civil:</label>
+        <select id="estado_civil" name="estado_civil" required>
+            <option value="Solteiro">Solteiro</option>
+            <option value="União Estável">União Estável</option>
+            <option value="Casado">Casado</option>
+            <option value="Divorciado">Divorciado</option>
+            <option value="Viúvo">Viúvo</option>
+        </select><br>
+
+        <label for="filhos">Filhos:</label>
+        <input type="number" id="quantidade_filhos" name="quantidade_filhos" min="0" max="10" required>
+        <div id="filhos_details">
+            <label for="idade_filho_1">Idade do filho 1:</label>
+            <input type="number" id="idade_filho_1" name="idade_filho_1" min="0" max="18" required><br>
+  
+            <!-- Adicione mais campos de idade dos filhos conforme necessário -->
+        </div>
+        
+
+        <label for="escolaridade">Escolaridade:</label>
+        <select id="escolaridade" name="escolaridade" required>
+            <option value="Fundamental (Incompleto)">Fundamental (Incompleto)</option>
+            <option value="Fundamental (Completo)">Fundamental (Completo)</option>
+            <option value="Ensino Médio (Incompleto)">Ensino Médio (Incompleto)</option>
+            <option value="Ensino Médio (Completo)">Ensino Médio (Completo)</option>
+            <option value="Superior (Incompleto)">Superior (Incompleto)</option>
+            <option value="Superior (Completo)">Superior (Completo)</option>
+            <option value="Pós Graduação (Incompleto)">Pós Graduação (Incompleto)</option>
+            <option value="Pós Graduação (Completo)">Pós Graduação (Completo)</option>
+            <option value="Mestrado">Mestrado</option>
+            <option value="Doutorado">Doutorado</option>
+        </select><br>
+
+        <label for="area_formacao">Área de Formação:</label>
+        <input type="text" id="area_formacao" name="area_formacao" required><br>
+
+        <label for="entidade">Entidade:</label>
+        <input type="text" id="entidade" name="entidade" required><br>
+
+        <label for="logradouro">Logradouro:</label>
+        <input type="text" id="logradouro" name="logradouro"><br>
+
+        <label for="bairro">Bairro:</label>
+        <input type="text" id="bairro" name="bairro"><br>
+
+        <label for="cidade">Cidade:</label>
+        <input type="text" id="cidade" name="cidade"><br>
+
+        <label for="estado">Estado:</label>
+        <input type="text" id="estado" name="estado"><br>
+
+        <label for="filial">Filial:</label>
+        <select id="filial" name="filial" required>
+            <option value="01">Loja 01</option>
+            <option value="02">Loja 02</option>
+            <option value="03">Loja 03</option>
+            <option value="04">Loja 04</option>
+            <option value="06">Loja 06</option>
+            <option value="08">Loja 08</option>
+            <option value="09">Loja 09</option>
+            <option value="10">Loja 10</option>
+            <option value="13">Loja 13</option>
+            <option value="14">Loja 14</option>
+            <option value="19">Loja 19</option>
+            <option value="20">Loja 20</option>
+            <option value="23">Loja 23</option>
+            <option value="24">Loja 24</option>
+            <option value="27">Loja 27</option>
+            <option value="31">Loja 31</option>
+            <option value="32">Loja 32</option>
+            <option value="33">Loja 33</option>
+            <option value="36">Loja 36</option>
+            <option value="37">Loja 37</option>
+            <option value="38">Loja 38</option>
+            <option value="40">Loja 40</option>
+            <option value="41">Loja 41</option>
+            <option value="42">Loja 42</option>
+            <option value="43">Loja 43</option>
+            <option value="44">Loja 44</option>
+            <option value="45">Loja 45</option>
+            <option value="47">Loja 47</option>
+        </select><br>
+
+        <label for="cargo">Cargo:</label>
+        <select id="cargo" name="cargo" required>
+            <option value="Serviços Gerais">Serviços Gerais</option>
+            <option value="Estoquista">Estoquista</option>
+            <option value="Vendedor">Vendedor</option>
+            <option value="Atendente de Loja">Atendente de Loja</option>
+            <option value="Operador (a) de Caixa">Operador (a) de Caixa</option>
+            <option value="Vitrinista">Vitrinista</option>
+            <option value="Sub Gerente">Sub Gerente</option>
+            <option value="Gerente Vendas">Gerente Vendas</option>
+            <option value="Aux. de Escritório">Aux. de Escritório</option>
+            <option value="Aux. de RH">Aux. de RH</option>
+            <option value="Assistente de RH">Assistente de RH</option>
+            <option value="Analista de RH">Analista de RH</option>
+            <option value="Supervisor de RH">Supervisor de RH</option>
+            <option value="Coordenador de RH">Coordenador de RH</option>
+            <option value="Gerente de RH">Gerente de RH</option>
+            <option value="Aux. de Setor Pessoal">Aux. de Setor Pessoal</option>
+            <option value="Assistente de Setor Pessoal">Assistente de Setor Pessoal</option>
+            <option value="Analista de Setor Pessoal">Analista de Setor Pessoal</option>
+            <option value="Supervisor de Setor Pessoal">Supervisor de Setor Pessoal</option>
+            <option value="Coordenador de Setor Pessoal">Coordenador de Setor Pessoal</option>
+            <option value="Gerente de Setor Pessoal">Gerente de Setor Pessoal</option>
+            <option value="Aux. de Contabilidade">Aux. de Contabilidade</option>
+            <option value="Analista de Contabilidade">Analista de Contabilidade</option>
+            <option value="Supervisor de Contabilidade">Supervisor de Contabilidade</option>
+            <option value="Coordenador de Contabilidade">Coordenador de Contabilidade</option>
+            <option value="Gerente de Contabilidade">Gerente de Contabilidade</option>
+            <option value="Aux. de Cobrança">Aux. de Cobrança</option>
+            <option value="Analista de Cobrança">Analista de Cobrança</option>
+            <option value="Supervisor de Cobrança">Supervisor de Cobrança</option>
+            <option value="Coordenador de Cobrança">Coordenador de Cobrança</option>
+            <option value="Gerente de Cobrança">Gerente de Cobrança</option>
+            <option value="Aux. de Departamento de Crédito">Aux. de Departamento de Crédito</option>
+            <option value="Analista de Departamento de Crédito">Analista de Departamento de Crédito</option>
+            <option value="Supervisor de Departamento de Crédito">Supervisor de Departamento de Crédito</option>
+            <option value="Coordenador de Departamento de Crédito">Coordenador de Departamento de Crédito</option>
+            <option value="Gerente de Departamento de Crédito">Gerente de Departamento de Crédito</option>
+            <option value="Aux. de T.I">Aux. de T.I</option>
+            <option value="Analista de T.I">Analista de T.I</option>
+            <option value="Supervisor de T.I">Supervisor de T.I</option>
+            <option value="Coordenador de T.I">Coordenador de T.I</option>
+            <option value="Gerente de T.I">Gerente de T.I</option>
+            <option value="Aux. de Contas a Pagar">Aux. de Contas a Pagar</option>
+            <option value="Analista de Contas a Pagar">Analista de Contas a Pagar</option>
+            <option value="Supervisor de Contas a Pagar">Supervisor de Contas a Pagar</option>
+            <option value="Coordenador de Contas a Pagar">Coordenador de Contas a Pagar</option>
+            <option value="Gerente de Contas a Pagar">Gerente de Contas a Pagar</option>
+            <option value="Aux. de Estatística">Aux. de Estatística</option>
+            <option value="Analista de Estatística">Analista de Estatística</option>
+            <option value="Supervisor de Estatística">Supervisor de Estatística</option>
+            <option value="Coordenador de Estatística">Coordenador de Estatística</option>
+            <option value="Gerente de Estatística">Gerente de Estatística</option>
+            <option value="Aux. de Tesouraria">Aux. de Tesouraria</option>
+            <option value="Analista de Tesouraria">Analista de Tesouraria</option>
+            <option value="Supervisor de Tesouraria">Supervisor de Tesouraria</option>
+            <option value="Coordenador de Tesouraria">Coordenador de Tesouraria</option>
+            <option value="Gerente de Tesouraria">Gerente de Tesouraria</option>
+            <option value="Aux. Administrativo">Aux. Administrativo</option>
+            <option value="Analista Administrativo">Analista Administrativo</option>
+            <option value="Supervisor Administrativo">Supervisor Administrativo</option>
+            <option value="Coordenador Administrativo">Coordenador Administrativo</option>
+            <option value="Gerente Administrativo">Gerente Administrativo</option>
+        </select><br>
+
+        <label for="admissao">Admissão:</label>
+        <input type="date" id="admissao" name="admissao" required><br>
+
+        <label for="praca">Praça:</label>
+        <select id="praca" name="praca" required>
+            <option value="Fortaleza CE">Fortaleza CE</option>
+            <option value="Caucaia CE">Caucaia CE</option>
+            <option value="Jurema CE">Jurema CE</option>
+            <option value="Maracanaú CE">Maracanaú CE</option>
+            <option value="Maranguape CE">Maranguape CE</option>
+            <option value="Eusébio CE">Eusébio CE</option>
+            <option value="Pacajús CE">Pacajús CE</option>
+            <option value="Pernambuco PE">Pernambuco PE</option>
+            <option value="Paraíba PB">Paraíba PB</option>
+        </select><br>
+
+        <label for="vale_transporte">Vale Transporte:</label>
+        <select id="vale_transporte" name="vale_transporte">
+            <option value="sim">Sim</option>
+            <option value="nao">Não</option>
+        </select>
+        
+        <label for="entrevistador">Entrevistador:</label>
+        <input type="text" id="entrevistador" name="entrevistador" required><br>
+
+        <label for="data_entrevista">Data da Entrevista:</label>
+        <input type="date" id="data_entrevista" name="data_entrevista" required><br>
+
+        <label for="status">Status:</label>
+        <select id="status" name="status" required>
+            <option value="Aguardando">Aguardando</option>
+            <option value="Aprovado">Aprovado</option>
+            <option value="Reprovado">Reprovado</option>
+        </select><br>
+
+        <label for="grau_anotacao">Grau de Anotação:</label>
+        <select id="grau_anotacao" name="grau_anotacao" required>
+            <option value="Péssimo"><i class="fa fa-angry"></i> Péssimo</option>
+            <option value="Ruim"><i class="fa fa-frown"></i> Ruim</option>
+            <option value="Moderado"><i class="fa fa-meh"></i> Moderado</option>
+            <option value="Bom"><i class="fa fa-smile"></i> Bom</option>
+            <option value="Excelente"><i class="fa fa-grin-stars"></i> Excelente</option>
+        </select><br>      
+
+        <label for="anotacao">Anotação:</label>
+        <textarea id="anotacao" name="anotacao" rows="4" cols="50"></textarea><br>
+
+        <input type="submit" value="Salvar">
+    </form>
+    <script src="{{ url_for('static', filename='cadastro.js') }}"></script>
+</body>
+</html>

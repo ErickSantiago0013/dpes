@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Configurações</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='configuracoes.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">Configurações</h1>
+
+        <!-- Mostrar mensagem de sucesso após salvar as configurações -->
+        {% if saved %}
+        <div class="alert alert-success mt-4" role="alert">
+            Configurações salvas com sucesso!
+        </div>
+        {% endif %}
+
+        <form action="/configuracoes" method="POST">
+            <h2>Tema</h2>
+            <div class="theme-options">
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="temaSwitch" name="tema" onclick="toggleTheme()">
+                    <label class="form-check-label" for="temaSwitch">Tema Escuro</label>
+                </div>
+            </div>
+
+            <h2>Fonte</h2>
+            <div class="font-options">
+                <label for="fontSelect">Fonte:</label>
+                <select id="fontSelect" class="form-select" name="fonte" onchange="changeFont()">
+                    <option value="Arial">Arial</option>
+                    <option value="Verdana">Verdana</option>
+                    <option value="Helvetica">Helvetica</option>
+                    <option value="Times New Roman">Times New Roman</option>
+                    <option value="Courier New">Courier New</option>
+                </select>
+            </div>
+
+            <div class="font-size-options">
+                <label for="fontSizeRange">Tamanho da Fonte:</label>
+                <input type="range" id="fontSizeRange" class="form-range" min="10" max="30" value="14" name="tamanho_fonte" onchange="changeFontSize(this.value)">
+                <span id="fontSizeValue">14px</span>
+            </div>
+
+            <div class="font-color-options">
+                <label for="fontColorInput">Cor da Fonte:</label>
+                <input type="color" id="fontColorInput" class="form-control form-control-color" name="cor_fonte" onchange="changeFontColor(this.value)">
+            </div>
+
+            <h2>Foto de Perfil</h2>
+            <div class="profile-picture-options">
+                <input type="file" id="profilePictureInput" class="form-control" name="fotoPerfil" accept="image/*" onchange="previewProfilePicture(event)">
+                <img id="profilePicturePreview" src="#" alt="Preview da Foto de Perfil" class="mt-2 img-thumbnail">
+            </div>
+
+            <!-- Botão de salvar configurações -->
+            <div class="text-center mt-4">
+                <button type="submit" class="btn btn-primary">Salvar Configurações</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='configuracoes.js') }}"></script>
+</body>
+</html>

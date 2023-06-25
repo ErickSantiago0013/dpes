@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tela de Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</head>
+<body>
+    <div class="login-container">
+        <h1>Realizar Login</h1>
+        {% if error_message %}
+            <p class="error">{{ error_message }}</p>
+        {% endif %}
+        <form method="POST" action="/login">
+            <div class="form-group">
+                <label for="username">Usuário</label>
+                <input type="text" id="username" name="username" placeholder="Nome de usuário" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Senha</label>
+                <input type="password" id="password" name="password" placeholder="Senha" required>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn-login">Entrar</button>
+            </div>
+        </form>
+        <p>Não tem uma conta? <a href="/register">Crie uma agora!</a></p>
+    </div>
+</body>
+</html>
